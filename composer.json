@@ -3,6 +3,7 @@
     "license": "MIT",
     "type": "library",
     "description" : "Apps Apps",
+    "keywords": ["laravel", "apps", "nexa-merchant"],
     "authors": [
         {
             "name": "Steven",
@@ -36,5 +37,5 @@
         }
     },
     "homepage": "https://nexamerchant.github.io/docs/",
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
