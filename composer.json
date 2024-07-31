@@ -1,0 +1,40 @@
+{
+    "name": "nexa-merchant/apps",
+    "license": "MIT",
+    "type": "library",
+    "description" : "Apps Apps",
+    "authors": [
+        {
+            "name": "Steven",
+            "email": "nice.lizhi@gmail.com"
+        }
+    ],
+    "require": {
+        "laravel/framework": "~10.0||~11.0"
+    },
+    "require-dev": {
+        "phpunit/phpcov": ">=6.0",
+        "phpunit/phpunit": ">=8.0",
+        "laravel/framework": "~10.0||~11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "NexaMerchant\\Apps\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NexaMerchant\\Apps\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NexaMerchant\\Apps\\Providers\\AppsServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "homepage": "https://nexamerchant.github.io/docs/",
+    "minimum-stability": "dev"
+}
