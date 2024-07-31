@@ -1,5 +1,5 @@
 <?php
-namespace Nicelizhi\Apps\Console\Commands;
+namespace NexaMerchant\Apps\Console\Commands;
 
 use Illuminate\Support\Facades\Storage;
 
