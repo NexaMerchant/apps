@@ -8,7 +8,19 @@
  * 
  */
 return [
+    /**
+     * 
+     * The name of the package
+     */
     'name' => 'Apps',
+    /**
+     * 
+     * The version of the package
+     */
     'version' => '1.0.1',
+    /**
+     * 
+     * The version number of the package
+     */
     'versionNum' => '101',
 ];
