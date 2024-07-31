@@ -1,38 +1,39 @@
 <?php
-/**
- * 
- * This file is auto generate by Nicelizhi\Apps\Commands\Create
- * @author Steve
- * @date 2024-07-31 16:40:01
- * @link https://github.com/xxxl4
- * 
- */
 namespace NexaMerchant\Apps\Console\Commands;
 
-use Nicelizhi\Apps\Console\Commands\CommandInterface;
 
 class Install extends CommandInterface 
 
 {
-    protected $signature = 'Apps:install';
+    protected $signature = 'apps:install {name}';
 
-    protected $description = 'Install Apps an app';
+    protected $description = 'Install an app';
 
     public function getAppVer() {
-        return config("Apps.ver");
+        return config("apps.ver");
     }
 
     public function getAppName() {
-        return config("Apps.name");
+        return config("apps.name");
     }
 
     public function handle()
     {
-        $this->info("Install app: Apps");
-        if (!$this->confirm('Do you wish to continue?')) {
-            // ...
-            $this->error("App Apps Install cannelled");
+        $name = $this->argument('name');
+        if(empty($name)) {
+            $this->error("App name is required!");
             return false;
         }
+        $this->info("Install app: $name");
+
+        if (!$this->confirm('Do you wish to continue?')) {
+            // ...
+            $this->error("App $name Install cannelled!");
+            return false;
+        }
+        
+        $dir = $this->getBaseDir($name);
+        $this->info($dir);
+
     }
 }

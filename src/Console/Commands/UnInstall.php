@@ -1,36 +1,35 @@
 <?php
-/**
- * 
- * This file is auto generate by Nicelizhi\Apps\Commands\Create
- * @author Steve
- * @date 2024-07-31 16:40:01
- * @link https://github.com/xxxl4
- * 
- */
-namespace NexaMerchant\Apps\Console\Commands;
+namespace Nicelizhi\Apps\Console\Commands;
 
-use Nicelizhi\Apps\Console\Commands\CommandInterface;
 
-class UnInstall extends CommandInterface 
-
+class UnInstall extends CommandInterface
 {
-    protected $signature = 'Apps:uninstall';
+    protected $signature = 'apps:uninstall {name}';
 
-    protected $description = 'Uninstall Apps an app';
+    protected $description = 'Uninstall an app';
 
     public function getAppVer() {
-        return config("Apps.ver");
+        return config("apps.ver");
     }
 
     public function getAppName() {
-        return config("Apps.name");
+        return config("apps.name");
     }
 
     public function handle()
     {
+        $name = $this->argument('name');
+
+        if(empty($name)) {
+            $this->error("App name is required!");
+            return false;
+        }
+
+        $this->info("Uninstall app: $name");
+
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
-            $this->error("App Apps UnInstall cannelled");
+            $this->error("App $name Uninstall cannelled!");
             return false;
         }
     }
