@@ -9,6 +9,6 @@
  */
 return [
     'name' => 'Apps',
-    'version' => '1.0.0',
-    'versionNum' => '100',
+    'version' => '1.0.1',
+    'versionNum' => '101',
 ];
