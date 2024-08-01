@@ -10,11 +10,11 @@ class Lists extends CommandInterface
     protected $description = 'list an app';
 
     public function getAppVer() {
-        return config("apps.ver");
+        return config("Apps.ver");
     }
 
     public function getAppName() {
-        return config("apps.name");
+        return config("Apps.name");
     }
 
     public function handle()
@@ -27,14 +27,14 @@ class Lists extends CommandInterface
             'debug' => false,
         ]);
 
-        $base_url = config("apps.url")."/api/Apps/list/apps";
+        $base_url = config("Apps.url")."/api/Apps/list/apps";
         $this->info("Base URL: ".$base_url);
 
         $response = $client->get($base_url, [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'X-Access-Token' => "Bearer ".config("apps.token"),
+                'X-Access-Token' => "Bearer ".config("Apps.token"),
             ]
         ]);
 

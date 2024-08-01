@@ -60,11 +60,11 @@ class Remove extends CommandInterface
     ];
 
     public function getAppVer() {
-        return config("apps.ver");
+        return config("Apps.ver");
     }
 
     public function getAppName() {
-        return config("apps.name");
+        return config("Apps.name");
     } 
 
     public function handle()
