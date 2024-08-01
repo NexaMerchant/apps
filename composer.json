@@ -2,8 +2,18 @@
     "name": "nexa-merchant/apps",
     "license": "MIT",
     "type": "library",
-    "description" : "Apps Apps",
+    "description" : "NexaMerchant Apps Apps",
     "keywords": ["laravel", "apps", "nexa-merchant"],
+    "suggest": {
+        "nexa-merchant/apis": "NexaMerchant Apis",
+        "nexa-merchant/webhooks": "NexaMerchant Webhooks",
+        "nexa-merchant/notifications": "NexaMerchant Notifications",
+        "nexa-merchant/transactions": "NexaMerchant Transactions",
+        "nexa-merchant/merchants": "NexaMerchant Merchants",
+        "nexa-merchant/users": "NexaMerchant Users",
+        "nexa-merchant/roles": "NexaMerchant Roles",
+        "nexa-merchant/permissions": "NexaMerchant Permissions"
+    },
     "authors": [
         {
             "name": "Steven",
