@@ -18,3 +18,9 @@ composer require nexa-merchant/apps
 ```
 php artisan apps:create
 ```
+
+# How to get a user token
+
+```
+php artisan apps:login
+```
