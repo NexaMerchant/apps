@@ -23,4 +23,24 @@ return [
      * The version number of the package
      */
     'versionNum' => '101',
+
+    /**
+     * 
+     * The base directory of the package
+     */
+    'base_dir'  => env('APPS_BASE_DIR', 'apps'),
+
+    /**
+     * 
+     * The base url of the package
+     */
+
+    'url' => env('APPS_URL', 'http://localhost'),
+
+    /**
+     * 
+     * The token of the package
+     */
+
+    'token' => env('APPS_TOKEN', '')
 ];
