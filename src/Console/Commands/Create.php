@@ -57,6 +57,9 @@ class Create extends CommandInterface
         'src/Routes/admin.php',
         'tests',
         'tests/bootstrap.php',
+        '.github',
+        '.github/workflows',
+        '.github/workflows/php.yml',
         'docs',
         'composer.json',
         'README.md',
@@ -214,6 +217,9 @@ class Create extends CommandInterface
             break;
             case 'src/Resources/lang/en/app.php':
                 $content = file_get_contents(__DIR__.'/stubs/app.lang.php.stub');
+            break;
+            case '.github/workflows/php.yml':
+                $content = file_get_contents(__DIR__.'/stubs/php.yml.stub');
             break;
 
             default:

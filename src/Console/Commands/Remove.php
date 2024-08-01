@@ -12,53 +12,6 @@ class Remove extends CommandInterface
     protected $AppName = null;
     protected $AppNameLower = null;
 
-    protected $dirList = [
-        'src',
-        'src/Config',
-        'src/Config/menu.php',
-        'src/Config/acl.php',
-        'src/Dtabase',
-        'src/Dtabase/Migrations',
-        'src/Dtabase/Seeds',
-        'src/Resources',
-        'src/Resources/views',
-        'src/Resources/views/demo.blade.php',
-        'src/Resources/views/Admin',
-        'src/Resources/views/Admin/demo.blade.php',
-        'src/Resources/lang',
-        'src/Http',
-        'src/Http/Middleware',
-        'src/Http/Requests',
-        'src/Http/Controllers',
-        'src/Http/Controllers/Api',
-        'src/Http/Controllers/Api/Controller.php',
-        'src/Http/Controllers/Api/ExampleController.php',
-        'src/Http/Controllers/Web',
-        'src/Http/Controllers/Web/Controller.php',
-        'src/Http/Controllers/Web/ExampleController.php',
-        'src/Http/Controllers/Admin',
-        'src/Http/Controllers/Admin/Controller.php',
-        'src/Http/Controllers/Admin/ExampleController.php',
-        'src/Console/Commands',
-        'src/Console/Commands/Install.php',
-        'src/Console/Commands/UnInstall.php',
-        'src/Console/Commands/Upload.php',
-        'src/Console/Commands/Publish.php',
-        'src/Providers',
-        'src/Helpers',
-        'src/Listeners',
-        'src/Models',
-        'src/Repositories',
-        'src/Routes',
-        'src/Routes/web.php',
-        'src/Routes/api.php',
-        'src/Routes/admin.php',
-        'tests',
-        'docs',
-        'README.md',
-        'composer.json'
-    ];
-
     public function getAppVer() {
         return config("Apps.ver");
     }
