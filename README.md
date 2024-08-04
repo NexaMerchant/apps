@@ -1,5 +1,7 @@
 # NexaMerchant/Apps
 
+> NexaMerchant is a apps store for NexaMerchant Platform, NexaMerchant is a free merchant software,you can use it build for ecommence, blog, cms, erp etc
+
 # How to Install
 
 
