@@ -17,6 +17,7 @@ class Create extends CommandInterface
         'src/Config',
         'src/Config/menu.php',
         'src/Config/acl.php',
+        'src/Config/l5-swagger.php',
         'src/Database',
         'src/Database/Migrations',
         'src/Database/Seeds',
@@ -183,6 +184,9 @@ class Create extends CommandInterface
             break;
             case 'src/Config/acl.php':
                 $content = file_get_contents(__DIR__.'/stubs/config.acl.php.stub');
+            break;
+            case 'src/Config/l5-swagger.php':
+                $content = file_get_contents(__DIR__.'/stubs/l5-swagger.php.stub');
             break;
             case 'src/Routes/web.php':
                 $content = file_get_contents(__DIR__.'/stubs/routes.web.php.stub');
