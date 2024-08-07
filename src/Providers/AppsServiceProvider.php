@@ -97,6 +97,10 @@ class AppsServiceProvider extends ServiceProvider
             $this->commands([
                 \NexaMerchant\Apps\Console\Commands\Install::class,
                 \NexaMerchant\Apps\Console\Commands\UnInstall::class,
+                \NexaMerchant\Apps\Console\Commands\Login::class,
+                \NexaMerchant\Apps\Console\Commands\Create::class,
+                \NexaMerchant\Apps\Console\Commands\Remove::class,
+                \NexaMerchant\Apps\Console\Commands\Lists::class, // apps:lists
             ]);
         }
     }
