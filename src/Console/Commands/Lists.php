@@ -1,6 +1,7 @@
 <?php
 namespace NexaMerchant\Apps\Console\Commands;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class Lists extends CommandInterface 
@@ -26,26 +27,42 @@ class Lists extends CommandInterface
             'timeout'  => 20.0,
             'debug' => false,
         ]);
+        $host = config("Apps.url");
+        if(empty($host)) {
+            throw new Exception("Please config the Apps url");
+            return false;
+        }
 
-        $base_url = config("Apps.url")."/api/Apps/list/apps";
+        $base_url = $host ."/api/Apps/list/apps";
         $this->info("Base URL: ".$base_url);
 
-        $response = $client->get($base_url, [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Accept' => 'application/json',
-                'X-Access-Token' => "Bearer ".config("Apps.token"),
-            ]
-        ]);
-
-        $this->info("Response: ".$response->getStatusCode());
+        try {
+            $response = $client->get($base_url, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'X-Access-Token' => "Bearer ".config("Apps.token"),
+                ]
+            ]);
     
-        $response = json_decode($response->getBody()->getContents(),true);
+            $this->info("Response: ".$response->getStatusCode());
 
-        $this->table(
-            ['ID','App Name', 'App Slug','App Code','App Description','App Version','App Author','App Email','App URL','App Icon','App Status','App Type','App Category','App Tags','App Price','App License','App Require','App Require PHP','App Require Laravel','App Require MySQL'],
-            $response['data']['apps']
-        );
+            //var_dump($response->getBody()->getContents());
+        
+            $response = json_decode($response->getBody()->getContents(),true);
+
+            $this->table(
+                ['ID','App Name', 'App Slug','App Code','App Description','App Version','App Author','App Email','App URL','App Icon','App Status','App Type','App Category','App Tags','App Price','App License','App Require','App Require PHP','App Require Laravel','App Require MySQL'],
+                $response['data']['apps']
+            );
+
+        }catch(Exception $e) {
+            $this->error($e->getMessage());
+        }
+
+        
+
+        
         
         // foreach($response->data->apps as $key => $app) {
         //     $this->info("App Name: ".$app->name);
