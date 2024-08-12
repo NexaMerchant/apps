@@ -96,6 +96,7 @@ class AppsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \NexaMerchant\Apps\Console\Commands\Install::class,
+                \NexaMerchant\Apps\Console\Commands\Update::class,
                 \NexaMerchant\Apps\Console\Commands\UnInstall::class,
                 \NexaMerchant\Apps\Console\Commands\Login::class,
                 \NexaMerchant\Apps\Console\Commands\Create::class,

@@ -32,5 +32,24 @@ class UnInstall extends CommandInterface
             $this->error("App $name Uninstall cannelled!");
             return false;
         }
+
+        $dir = $this->getBaseDir($name);
+        $this->info($dir);
+
+        if(!file_exists($dir)) {
+            $this->error("App $name not exists!");
+            return false;
+        }
+
+        $this->info("Remove app $name...");
+        
+        try {
+            $result = shell_exec("composer remove ".config($name.".composer"));
+
+
+        }catch(\Exception $e) {
+            $this->error("App $name update failed!". $e->getMessage());
+            return false;
+        }
     }
 }

@@ -2,12 +2,11 @@
 namespace NexaMerchant\Apps\Console\Commands;
 
 
-class Install extends CommandInterface 
-
+class Update extends CommandInterface
 {
-    protected $signature = 'apps:install {name}';
+    protected $signature = 'apps:update {name}';
 
-    protected $description = 'Install an app';
+    protected $description = 'Update an app';
 
     public function getAppVer() {
         return config("Apps.ver");
@@ -24,40 +23,36 @@ class Install extends CommandInterface
             $this->error("App name is required!");
             return false;
         }
-        $this->info("Install app: $name");
+        $this->info("Update app: $name");
 
         if (!$this->confirm('Do you wish to continue?')) {
             // ...
-            $this->error("App $name Install cannelled!");
+            $this->error("App $name Update cannelled!");
             return false;
         }
         
         $dir = $this->getBaseDir($name);
         $this->info($dir);
 
-        if(file_exists($dir)) {
-            $this->error("App $name already exists!");
-            //return false;
+        if(!file_exists($dir)) {
+            $this->error("App $name not exists!");
+            return false;
         }
 
-        $this->info("Installing app $name...");
+        $this->info("Updating app $name...");
         
         try {
-            $result = shell_exec("composer require ".config($name.".composer"));
+            $result = shell_exec("composer update ".config($name.".composer"));
 
             //var_dump($result);
-            //$this->info("App $name installed successfully!");
+            //$this->info("App $name updated successfully!");
 
         }catch(\Exception $e) {
-            $this->error("App $name install failed!". $e->getMessage());
+            $this->error("App $name update failed!". $e->getMessage());
             return false;
         }
         
 
-
-        
-        
-
-
     }
+
 }
