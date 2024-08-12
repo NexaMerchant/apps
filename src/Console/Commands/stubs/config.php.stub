@@ -33,7 +33,7 @@ return [
      /*
       * Composer Package Name
      */
-    'composer' => 'nexa-merchant/{{name}}'
+    'composer' => 'composer require nexa-merchant/{{name}}'
 
     /**
      * 
