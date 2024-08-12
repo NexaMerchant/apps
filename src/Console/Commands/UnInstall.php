@@ -41,6 +41,12 @@ class UnInstall extends CommandInterface
             return false;
         }
 
+        $package = config($name.".composer");
+        if(empty($package)) {
+            $this->error("App $name not exists!");
+            return false;
+        }
+
         $this->info("Remove app $name...");
         
         try {

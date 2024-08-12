@@ -39,6 +39,12 @@ class Update extends CommandInterface
             return false;
         }
 
+        $package = config($name.".composer");
+        if(empty($package)) {
+            $this->error("App $name not exists!");
+            return false;
+        }
+
         $this->info("Updating app $name...");
         
         try {
