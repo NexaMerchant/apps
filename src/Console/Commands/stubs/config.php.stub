@@ -30,6 +30,11 @@ return [
      */
      'enable' => env('{{NAME}}.ENABLED', true),
 
+     /*
+      * Composer Package Name
+     */
+    'composer' => 'nexa-merchant/{{name}}'
+
     /**
      * 
      * The description of the package
