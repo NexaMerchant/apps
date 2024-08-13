@@ -59,7 +59,8 @@ jobs:
         uses: shivammathur/setup-php@master
         with:
           php-version: '${{ matrix.php }}'
-          extensions: mbstring, pdo_sqlite, fileinfo, gd, xdebug
+          extensions: mbstring, pdo_sqlite, fileinfo, gd
+          coverage: none
 
       # Configure NPM
       - uses: actions/setup-node@v1
