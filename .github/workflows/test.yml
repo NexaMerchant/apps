@@ -85,4 +85,4 @@ jobs:
 
       # Run phpunit tests
       - name: Run tests
-        run: ./vendor/bin/phpunit
+        run: ./vendor/bin/phpunit --migrate-configuration
