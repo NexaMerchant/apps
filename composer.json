@@ -2,7 +2,7 @@
     "name": "nexa-merchant/apps",
     "license": "MIT",
     "type": "library",
-    "description" : "NexaMerchant Apps Apps",
+    "description" : "NexaMerchant Apps platform",
     "keywords": ["laravel", "apps", "nexa-merchant"],
     "suggest": {
         "nexa-merchant/apis": "NexaMerchant Apis",
@@ -10,17 +10,17 @@
     },
     "authors": [
         {
-            "name": "Steven",
+            "name": "Steve",
             "email": "nice.lizhi@gmail.com"
         }
     ],
     "require": {
-        "laravel/framework": "~9.0||~10.0||~11.0"
+        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
     },
     "require-dev": {
         "phpunit/phpcov": ">=6.0",
         "phpunit/phpunit": ">=8.0",
-        "laravel/framework": "~9.0||~10.0||~11.0"
+        "laravel/framework": "~6.0||~7.0||~8.0||~9.0||~10.0||~11.0"
     },
     "autoload": {
         "psr-4": {
