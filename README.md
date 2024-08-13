@@ -26,3 +26,13 @@ php artisan apps:create
 ```
 php artisan apps:login
 ```
+
+# How to Remove a app packages
+```
+php artisan apps:remove {app_name}
+```
+
+# How to publish a app packages
+```
+php artisan apps:publish {app_name}
+```
