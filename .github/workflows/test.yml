@@ -60,7 +60,6 @@ jobs:
         with:
           php-version: '${{ matrix.php }}'
           extensions: mbstring, pdo_sqlite, fileinfo, gd, xdebug
-          coverage: xdebug
 
       # Configure NPM
       - uses: actions/setup-node@v1
@@ -85,4 +84,4 @@ jobs:
 
       # Run phpunit tests
       - name: Run tests
-        run: ./vendor/bin/phpunit --migrate-configuration
+        run: ./vendor/bin/phpunit
