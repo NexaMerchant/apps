@@ -20,7 +20,7 @@ abstract class CommandInterface extends Command
         $base_dir = config("Apps.base_dir");
         $name = trim($name);
         $name = ucfirst($name);
-        $dir = base_path().$base_dir.'/'.$name;
+        $dir = base_path().$base_dir.$name.'/';
         return $dir;
     }
 
@@ -38,5 +38,17 @@ abstract class CommandInterface extends Command
         $name = trim($name);
         $name = ucfirst($name);
         return $name;
+    }
+
+
+    /**
+     * 
+     * Get Package Config
+     * 
+     * 
+     */
+    protected function getPackageConfig($name) {
+        $config = config($name);
+        return $config;
     }
 }

@@ -102,6 +102,7 @@ class AppsServiceProvider extends ServiceProvider
                 \NexaMerchant\Apps\Console\Commands\Create::class,
                 \NexaMerchant\Apps\Console\Commands\Remove::class,
                 \NexaMerchant\Apps\Console\Commands\Lists::class, // apps:lists
+                \NexaMerchant\Apps\Console\Commands\Publish::class, // apps:publish
             ]);
         }
     }
