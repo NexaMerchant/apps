@@ -124,6 +124,7 @@ class Publish extends CommandInterface
             ]
         ]);
 
+        $this->info("App $name published successfully");
     
 
 
