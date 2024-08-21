@@ -9,6 +9,7 @@
  */
 use Illuminate\Support\Facades\Route;
 use NexaMerchant\Apps\Http\Controllers\Api\ExampleController;
+use NexaMerchant\Apps\Http\Controllers\Api\V1\AppsController;
 
 Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
      Route::prefix('apps')->group(function () {
@@ -20,4 +21,18 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
         });
 
      });
+
+
+        Route::prefix('v1')->group(function () {
+    
+            Route::controller(AppsController::class)->prefix('apps')->group(function () {
+    
+                Route::get('demo', 'demo')->name('apps.api.v1.apps.demo');
+    
+            });
+    
+        });
+
+        
+
 });

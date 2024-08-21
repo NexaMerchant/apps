@@ -9,6 +9,7 @@
  */
 use Illuminate\Support\Facades\Route;
 use NexaMerchant\Apps\Http\Controllers\Admin\ExampleController;
+use NexaMerchant\Apps\Http\Controllers\Admin\AppsController;
 
 Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('app.admin_url')], function () {
     Route::prefix('apps')->group(function () {
@@ -16,6 +17,13 @@ Route::group(['middleware' => ['admin','admin_option_log'], 'prefix' => config('
         Route::controller(ExampleController::class)->prefix('example')->group(function () {
 
             Route::get('demo', 'demo')->name('apps.admin.example.demo');
+
+        });
+
+
+        Route::controller(AppsController::class)->prefix('apps')->group(function () {
+
+            Route::get('setting', 'setting')->name('apps.admin.apps.setting');
 
         });
 
