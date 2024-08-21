@@ -84,6 +84,9 @@ class Remove extends CommandInterface
         // composer dump autoload
         exec('composer dump-autoload');
 
+        // delete the directory
+        $this->deleteDirectory($dir);
+
         $this->info("App $name created successfully");
         
     }

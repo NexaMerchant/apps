@@ -114,6 +114,12 @@ class Create extends CommandInterface
         array_push($this->dirList, 'src/Config/'.$name.'.php');
 
         foreach($this->dirList as $d) {
+            // when .github/workflows/php.yml need create a file
+            if ($d == '.github/workflows/php.yml') {
+                $this->createFile($dir, $d, '');
+                continue;
+            }
+
             if (strpos($d, '.')) {
                 $this->createFile($dir, $d, '');
             } else {
