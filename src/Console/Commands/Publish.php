@@ -92,9 +92,39 @@ class Publish extends CommandInterface
 
         $this->info("App $name moved successfully");
 
-        
+        // publish the zip file to the storage server use the storage server api
 
+        $this->info("Publishing the app $name");
 
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('POST', config("Apps.APPS_URL"), [
+            'multipart' => [
+                [
+                    'name'     => 'file',
+                    'contents' => fopen($zipFile, 'r'),
+                    'filename' => $zipFileName
+                ],
+                [
+                    'name'     => 'name',
+                    'contents' => $this->AppName
+                ],
+                [
+                    'name'     => 'version',
+                    'contents' => $this->getAppVer()
+                ],
+                [
+                    'name'     => 'type',
+                    'contents' => 'apps'
+                ],
+                [   
+                    'name' => 'token', 
+                    'contents' => config('Apps.token')
+                ]
+            ]
+        ]);
+
+    
 
 
 
