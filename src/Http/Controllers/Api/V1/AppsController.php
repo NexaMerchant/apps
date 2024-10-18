@@ -15,10 +15,6 @@ class AppsController extends Controller
     private $storage;
 
     private $cache_expire = 60;
-
-    public function __construct() {
-        parent::__construct();
-    }
     
     /**
      * 
