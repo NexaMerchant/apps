@@ -51,10 +51,16 @@ class Lists extends CommandInterface
         
             $response = json_decode($response->getBody()->getContents(),true);
 
-
+            
+            if($response['code'] != 200) {
+                throw new Exception($response['message']);
+            }
+            if(empty($response['data']['data'])) {
+                throw new Exception("No data found");
+            }
             $this->table(
                 ['ID','App Name', 'App Slug','App Code','App Description','App Version','App Author','App Email','App URL','App Icon','App Status','App Type','App Category','App Tags','App Price','App License','App Require','App Require PHP','App Require Laravel','App Require MySQL'],
-                $response['data']['apps']
+                $response['data']['data']
             );
 
         }catch(Exception $e) {

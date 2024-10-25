@@ -200,9 +200,13 @@ class AppsController extends Controller
      */
     public function list(Request $request) {
 
+        $page = $request->input('page', 1);
+        $limit = $request->input('limit', 10);
+
         // add cache for the list
-        $list = Cache::remember('apps_list', $this->cache_expire, function() {
-            return \NexaMerchant\Apps\Models\App::all();
+        $list = Cache::remember('apps_list', $this->cache_expire, function() use ($page, $limit) {
+            return \NexaMerchant\Apps\Models\App::paginate($limit, ['*'], 'page', $page);
+            //return \NexaMerchant\Apps\Models\App::groupBy('code')->get();
         });
 
         $data = [];
