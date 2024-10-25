@@ -125,10 +125,6 @@ class Publish extends CommandInterface
                 [
                     'name'     => 'type',
                     'contents' => 'apps'
-                ],
-                [   
-                    'name' => 'token', 
-                    'contents' => config('Apps.token')
                 ]
             ]
         ]);

@@ -5,7 +5,7 @@ use GuzzleHttp\Client;
 
 class Search extends CommandInterface 
 {
-    protected $signature = 'apps:search {name}';
+    protected $signature = 'app:search {name}';
 
     protected $description = 'list an app';
 
@@ -25,15 +25,12 @@ class Search extends CommandInterface
             return false;
         }
 
-        $client = new Client([
-            'timeout'  => 20.0,
-            'debug' => false,
-        ]);
+        $client = $this->setClient();
 
-        $base_url = config("apps.url")."/api/Apps/list/search/".$name;
+        $base_url = config("apps.url")."".$name;
         $this->info("Base URL: ".$base_url);
 
-        $response = $client->get($base_url, [
+        $response = $client->get('/api/v1/app/search/', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
