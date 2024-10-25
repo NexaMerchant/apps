@@ -71,7 +71,7 @@ abstract class CommandInterface extends Command
     protected function setClient() {
         return new Client([
             'timeout'  => 20.0,
-            'debug' => false,
+            'debug' => config("Apps.debug"),
             'base_uri' => config("Apps.url"),
         ]);
     }

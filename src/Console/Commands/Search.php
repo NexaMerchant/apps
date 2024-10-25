@@ -5,9 +5,11 @@ use GuzzleHttp\Client;
 
 class Search extends CommandInterface 
 {
-    protected $signature = 'apps:search {name}';
+    protected $signature = 'apps:search {name} {--type=} {--category=} {--sort=} {--order=} {--limit=} {--page=}';
 
-    protected $description = 'list an app';
+    protected $description = 'list an app {name} {--type=} {--category=} {--sort=} {--order=} {--limit=} {--page=}';
+
+    protected $type = null;
 
     public function getAppVer() {
         return config("apps.ver");
@@ -20,6 +22,14 @@ class Search extends CommandInterface
     public function handle()
     {
         $name = $this->argument('name');
+
+        $this->type = $this->option('type');
+        $category = $this->option('category');
+
+        if(empty($this->type)) {
+            $this->type = 'all';
+        }
+
         if(empty($name)) {
             $this->error("App name is required!");
             return false;
@@ -34,7 +44,13 @@ class Search extends CommandInterface
                 'X-Access-Token' => "Bearer ".config("apps.token"),
             ],
             'query' => [
-                'name' => $name
+                'name' => $name,
+                'type' => $this->type,
+                'category' => $category,
+                'sort' => $this->option('sort'),
+                'order' => $this->option('order'),
+                'limit' => $this->option('limit'),
+                'page' => $this->option('page'),
             ]
         ]);
 
