@@ -37,6 +37,8 @@ Route::group(['middleware' => ['api'], 'prefix' => 'api'], function () {
 
                 Route::get('list', 'list')->name('apps.api.v1.apps.list');
 
+                Route::get('search', 'search')->name('apps.api.v1.apps.search');
+
                 Route::get('info', 'info')->name('apps.api.v1.apps.info');
 
                 Route::get('delete', 'delete')->name('apps.api.v1.apps.delete');

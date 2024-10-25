@@ -5,7 +5,7 @@ use GuzzleHttp\Client;
 
 class Search extends CommandInterface 
 {
-    protected $signature = 'app:search {name}';
+    protected $signature = 'apps:search {name}';
 
     protected $description = 'list an app';
 
@@ -27,24 +27,27 @@ class Search extends CommandInterface
 
         $client = $this->setClient();
 
-        $base_url = config("apps.url")."".$name;
-        $this->info("Base URL: ".$base_url);
-
-        $response = $client->get('/api/v1/app/search/', [
+        $response = $client->get('/api/v1/apps/search', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
                 'X-Access-Token' => "Bearer ".config("apps.token"),
+            ],
+            'query' => [
+                'name' => $name
             ]
         ]);
 
-        $this->info("Response: ".$response->getStatusCode());
+        //$this->info("Response: ".$response->getStatusCode());
     
         $response = json_decode($response->getBody()->getContents(),true);
 
+        $this->error("Search for: ".$name);
+        $this->info("Total: ".$response['data']['total']);
+
         $this->table(
             ['ID','App Name', 'App Slug','App Code','App Description','App Version','App Author','App Email','App URL','App Icon','App Status','App Type','App Category','App Tags','App Price','App License','App Require','App Require PHP','App Require Laravel','App Require MySQL'],
-            $response['data']['apps']
+            $response['data']['data']
         );
 
 

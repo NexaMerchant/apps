@@ -102,7 +102,7 @@ class AppsController extends Controller
 
     /**
      * 
-     * Get The Apps List
+     * Serch The Apps List
      * @return json
      * @param Request $request
      * @access public
@@ -110,11 +110,11 @@ class AppsController extends Controller
      * @auther NexaMerchant
      * 
      */
-    public function index(Request $request) {
+    public function search(Request $request) {
 
         $name = $request->input('name');
         $limit = $request->input('limit', 10);
-        $page = $request->input('page', 1);
+        $page = $request->input('page', 0);
         $type = $request->input('type', 'all');
         $sort = $request->input('sort', 'desc');
         $order = $request->input('order', 'created_at');
@@ -135,11 +135,13 @@ class AppsController extends Controller
 
         $query->orderBy($order, $sort);
 
-        $data = $query->paginate($limit, ['*'], 'page', $page);
+
+        $items = $query->paginate($limit, ['*'], 'page', $page);
 
         $data = [];
         $data['code'] = 200;
         $data['message'] = "success";
+        $data['data'] = $items;
         return response()->json($data);
     }
 
