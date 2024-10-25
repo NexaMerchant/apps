@@ -102,11 +102,7 @@ class Publish extends CommandInterface
 
         $this->info("Publishing the app $name");
 
-        $client = new Client([
-            'timeout'  => 20.0,
-            'debug' => true,
-            'base_uri' => config("Apps.url"),
-        ]);
+        $client = $this->setClient();
 
         $response = $client->request('POST', '/api/v1/apps/publish', [
             'headers' => [

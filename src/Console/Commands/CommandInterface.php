@@ -62,4 +62,17 @@ abstract class CommandInterface extends Command
         }
         return $config;
     }
+
+    /**
+     * 
+     * Set Client
+     * 
+     */
+    protected function setClient() {
+        return new Client([
+            'timeout'  => 20.0,
+            'debug' => false,
+            'base_uri' => config("Apps.url"),
+        ]);
+    }
 }

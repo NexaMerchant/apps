@@ -23,21 +23,10 @@ class Lists extends CommandInterface
         
         $this->info("List apps");
 
-        $client = new Client([
-            'timeout'  => 20.0,
-            'debug' => false,
-        ]);
-        $host = config("Apps.url");
-        if(empty($host)) {
-            throw new Exception("Please config the Apps url");
-            return false;
-        }
-
-        $base_url = $host ."/api/v1/apps/list";
-        $this->info("Base URL: ".$base_url);
-
+        $client = $this->setClient();
+        
         try {
-            $response = $client->get($base_url, [
+            $response = $client->get('/api/v1/apps/list', [
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
