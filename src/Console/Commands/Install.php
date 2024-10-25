@@ -35,6 +35,8 @@ class Install extends CommandInterface
         $dir = $this->getBaseDir($name);
         $this->info($dir);
 
+        exit;
+
         if(file_exists($dir)) {
             $this->error("App $name already exists!");
             //return false;
