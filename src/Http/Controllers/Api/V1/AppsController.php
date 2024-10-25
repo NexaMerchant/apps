@@ -58,27 +58,40 @@ class AppsController extends Controller
 
         //$this->info("Moving the app $name to $zipFile");
 
+        // check the app owner token todo
+
+
         // save the app to the database
-        $app = \NexaMerchant\Apps\Models\App::where('name', $name)->where('version', $version)->first();
+        $app = \NexaMerchant\Apps\Models\App::where('name', $name)->first();
         if(is_null($app)) {
             $app = new \NexaMerchant\Apps\Models\App();
+            $app->status = 'pending';
+            $app->name = $name;
+            $app->type = 'apps';
+            $app->slug = $name;
+            $app->code = $name;
+            $app->description = $name;
+            $app->author = $name;
+            $app->email = $name;
+            $app->url = $name;
+            $app->category = 'apps';
+            $app->tags = 'apps';
+            $app->price = 0;
+            $app->save();
         }
-        $app->name = $name;
-        $app->version = $version;
-        $app->type = 'apps';
-        $app->status = 'pending';
-        $app->slug = $name;
-        $app->code = $name;
-        $app->description = $name;
-        $app->author = $name;
-        $app->email = $name;
-        $app->url = $name;
-        $app->category = 'apps';
-        $app->tags = 'apps';
-        $app->price = 0;
 
-        $app->save();
-
+        // save the app version to the database
+        $appVersion = \NexaMerchant\Apps\Models\AppVersion::where('version', $version)->where('app_id', $app->id)->first();
+        if(is_null($appVersion)) {
+            $appVersion = new \NexaMerchant\Apps\Models\AppVersion();
+        }
+        
+        $appVersion->version = $version;
+        $appVersion->description = $name;
+        $appVersion->app_id = $app->id;
+        $appVersion->status = 'pending';
+        $appVersion->save();
+        
 
 
         $data = [];

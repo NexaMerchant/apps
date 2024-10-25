@@ -87,4 +87,19 @@ class App extends Model {
             ->orWhere('description', 'like', "%$search%")
             ->orWhere('tags', 'like', "%$search%");
     }
+
+    // version
+    public function versions() {
+        return $this->hasMany(AppVersion::class, 'app_id', 'id');
+    }
+
+    // app online
+    public function online() {
+        return $this->versions()->enable()->latest()->first();
+    }
+
+    // app offline
+    public function offline() {
+        return $this->versions()->disable()->latest()->first();
+    }
 }
