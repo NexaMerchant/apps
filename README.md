@@ -1,5 +1,8 @@
 # NexaMerchant/Apps
 
+[![Build Status](https://github.com/NexaMerchant/apps/workflows/Laravel/badge.svg)](https://github.com/NexaMerchant/apps)
+[![Release](https://img.shields.io/github/release/NexaMerchant/apps.svg?style=flat-square)](https://github.com/NexaMerchant/apps/releases)
+
 > NexaMerchant is a apps store for NexaMerchant Platform, NexaMerchant is a free merchant software,you can use it build for ecommence, blog, cms, erp etc
 
 # How to Install
