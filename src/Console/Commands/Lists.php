@@ -33,7 +33,7 @@ class Lists extends CommandInterface
             return false;
         }
 
-        $base_url = $host ."/api/Apps/list/apps";
+        $base_url = $host ."/api/v1/apps/list";
         $this->info("Base URL: ".$base_url);
 
         try {
@@ -50,6 +50,7 @@ class Lists extends CommandInterface
             //var_dump($response->getBody()->getContents());
         
             $response = json_decode($response->getBody()->getContents(),true);
+
 
             $this->table(
                 ['ID','App Name', 'App Slug','App Code','App Description','App Version','App Author','App Email','App URL','App Icon','App Status','App Type','App Category','App Tags','App Price','App License','App Require','App Require PHP','App Require Laravel','App Require MySQL'],

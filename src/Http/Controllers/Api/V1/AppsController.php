@@ -31,7 +31,7 @@ class AppsController extends Controller
      * 
      */
 
-    public function publish() {
+    public function publish(Request $request) {
 
         // save file to the storage
 
@@ -57,6 +57,27 @@ class AppsController extends Controller
         $file->move(storage_path("Apps/") . $name, $zipFileName);
 
         //$this->info("Moving the app $name to $zipFile");
+
+        // save the app to the database
+        $app = \NexaMerchant\Apps\Models\App::where('name', $name)->where('version', $version)->first();
+        if(is_null($app)) {
+            $app = new \NexaMerchant\Apps\Models\App();
+        }
+        $app->name = $name;
+        $app->version = $version;
+        $app->type = 'apps';
+        $app->status = 'pending';
+        $app->slug = $name;
+        $app->code = $name;
+        $app->description = $name;
+        $app->author = $name;
+        $app->email = $name;
+        $app->url = $name;
+        $app->category = 'apps';
+        $app->tags = 'apps';
+        $app->price = 0;
+
+        $app->save();
 
 
 
@@ -170,6 +191,26 @@ class AppsController extends Controller
         $data['message'] = "success";
         $data['data'] = $type;
         return response()->json($data);
+    }
+
+    /**
+     * 
+     * Get The Apps Platform list
+     * @return json
+     */
+    public function list(Request $request) {
+
+        // add cache for the list
+        $list = Cache::remember('apps_list', $this->cache_expire, function() {
+            return \NexaMerchant\Apps\Models\App::all();
+        });
+
+        $data = [];
+        $data['code'] = 200;
+        $data['message'] = "success";
+        $data['data'] = $list;
+        return response()->json($data);
+
     }
 
 

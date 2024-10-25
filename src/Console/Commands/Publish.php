@@ -1,6 +1,7 @@
 <?php 
 namespace NexaMerchant\Apps\Console\Commands;
-
+use Exception;
+use GuzzleHttp\Client;
 
 class Publish extends CommandInterface
 {
@@ -57,13 +58,20 @@ class Publish extends CommandInterface
 
         $zip = new \ZipArchive();
 
-        // read the package config info
-        $packageConfig = $this->getPackageConfig($name);
+        try {
+             // read the package config info
+            $packageConfig = $this->getPackageConfig($name);
 
-        // zip File name include the app name and app version
-        $zipFileName = $packageConfig['name'] . "-" . $packageConfig['version'] . ".zip";
+            // zip File name include the app name and app version
+            $zipFileName = $packageConfig['name'] . "-" . $packageConfig['version'] . ".zip";
 
-        $zip->open($zipFileName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+            $zip->open($zipFileName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+
+        } catch (\Exception $e) {
+            $this->error("App $name zip failed");
+            return false;
+        }
+       
 
        $this->addDirToZip($dir, $zip);
 
@@ -72,8 +80,6 @@ class Publish extends CommandInterface
         $this->info("App $name zipped successfully");
 
         // move the zip file to the packages storage directory
-
-
 
         $zipFile = storage_path("Apps/") . $this->AppName . "/" . $zipFileName;
 
@@ -96,9 +102,16 @@ class Publish extends CommandInterface
 
         $this->info("Publishing the app $name");
 
-        $client = new \GuzzleHttp\Client();
+        $client = new Client([
+            'timeout'  => 20.0,
+            'debug' => true,
+            'base_uri' => config("Apps.url"),
+        ]);
 
-        $response = $client->request('POST', config("Apps.APPS_URL"), [
+        $response = $client->request('POST', '/api/v1/apps/publish', [
+            'headers' => [
+                'X-Access-Token' => "Bearer ".config("Apps.token"),
+            ],
             'multipart' => [
                 [
                     'name'     => 'file',
@@ -111,7 +124,7 @@ class Publish extends CommandInterface
                 ],
                 [
                     'name'     => 'version',
-                    'contents' => $this->getAppVer()
+                    'contents' => $packageConfig['version']
                 ],
                 [
                     'name'     => 'type',
@@ -124,9 +137,9 @@ class Publish extends CommandInterface
             ]
         ]);
 
-        $this->info("App $name published successfully");
-    
-
+        $content = $response->getBody()->getContents();
+        $this->info("Response: ".$content);
+       // $this->info("App $name published successfully");
 
 
     }

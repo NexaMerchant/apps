@@ -2,6 +2,8 @@
 namespace NexaMerchant\Apps\Console\Commands;
 
 use Illuminate\Console\Command;
+use Exception;
+use GuzzleHttp\Client;
 abstract class CommandInterface extends Command
 {
 
@@ -49,6 +51,15 @@ abstract class CommandInterface extends Command
      */
     protected function getPackageConfig($name) {
         $config = config($name);
+        if(empty($config)) {
+            // read the config file
+            $configFile = $this->getBaseDir($name) . "src/Config/".$name.".php";
+            if(!file_exists($configFile)) {
+                return [];
+            }
+            
+            $config = include $configFile;
+        }
         return $config;
     }
 }
