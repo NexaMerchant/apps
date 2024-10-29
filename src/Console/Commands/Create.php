@@ -65,6 +65,7 @@ class Create extends CommandInterface
         'composer.json',
         'README.md',
         'phpunit.xml',
+        'LICENSE.md',
     ];
 
     public function getAppVer() {
@@ -230,6 +231,9 @@ class Create extends CommandInterface
             break;
             case '.github/workflows/php.yml':
                 $content = file_get_contents(__DIR__.'/stubs/php.yml.stub');
+            break;
+            case 'LICENSE.md':
+                $content = file_get_contents(__DIR__.'/stubs/LICENSE.md.stub');
             break;
 
             default:
