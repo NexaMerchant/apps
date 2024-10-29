@@ -2,7 +2,7 @@
     "name": "nexa-merchant/apps",
     "license": "MIT",
     "type": "library",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description" : "NexaMerchant Apps platform",
     "keywords": ["laravel", "apps", "nexa-merchant"],
     "suggest": {
